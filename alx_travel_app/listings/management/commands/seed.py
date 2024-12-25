@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = 'Populate the database with sample data'
 
     def handle(self, *args, **kwargs):
-        # Create sample listings
+        # Sample listings
         listings = [
             {"title": "Cozy Beach House", "description": "A lovely beach house with a great view.", "price_per_night": 150, "location": "Malibu"},
             {"title": "Mountain Retreat", "description": "A peaceful retreat in the mountains.", "price_per_night": 120, "location": "Colorado"},
@@ -18,8 +18,7 @@ class Command(BaseCommand):
             listing = Listing.objects.create(**listing_data)
             self.stdout.write(f"Listing {listing.title} created!")
 
-            # Create sample bookings for each listing
-            for _ in range(random.randint(1, 5)):  # Random number of bookings per listing
+            for _ in range(random.randint(1, 5)): 
                 user_name = f"User{random.randint(1, 100)}"
                 check_in_date = date.today() + timedelta(days=random.randint(1, 30))
                 check_out_date = check_in_date + timedelta(days=random.randint(1, 7))
@@ -30,8 +29,7 @@ class Command(BaseCommand):
                     check_out_date=check_out_date
                 )
 
-            # Create sample reviews for each listing
-            for _ in range(random.randint(1, 3)):  # Random number of reviews per listing
+            for _ in range(random.randint(1, 3)):
                 user_name = f"User{random.randint(1, 100)}"
                 rating = random.randint(1, 5)
                 comment = f"Great place! Rating: {rating}/5."
